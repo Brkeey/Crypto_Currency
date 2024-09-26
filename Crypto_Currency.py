@@ -23,7 +23,7 @@ data_list = data_dict["data"]
 
 
 def get_mail():
-    # Gmail email sunucusuna bağlanıyoruz
+    # Connect to mail server
     try:
         mail = smtplib.SMTP("smtp.gmail.com",587)
         mail.ehlo()
@@ -31,26 +31,24 @@ def get_mail():
         mail.login(mail_entry, pass_entry)
 
         mesaj = MIMEMultipart()
-        mesaj["From"] = "emailkullanicim@gmail.com"           # Gönderen
-        mesaj["Subject"] = "Python Smtp ile Mail Gönderme"    # Konusu
+        mesaj["From"] = "emailuser@gmail.com"                 # Sender
+        mesaj["Subject"] = "Python Smtp ile Mail Gönderme"    # Subject
 
         body = """
 
-        Python ile smtp ve email modülünü kullanarak mail gönderiyorum.
+        I am sending emails using the smtp and email module with Python.
 
         """
 
-        body_text = MIMEText(body, "plain")  #
+        body_text = MIMEText(body, "plain")  
         mesaj.attach(body_text)
 
         mail.sendmail(mesaj["From"], mesaj["To"], mesaj.as_string())
         print("Mail başarılı bir şekilde gönderildi.")
         mail.close()
 
-    # Eğer mesaj gönderirken hata olursa, hata mesajını konsole yazdırıyorum.
     except:
         print("Hata:", sys.exc_info()[0])
-
 
 
 
@@ -136,11 +134,6 @@ crypto_max_supply_label_1.pack()
 
 crypto_max_supply_label = Label(app, font=('Arial', 15))
 crypto_max_supply_label.pack()
-
-
-
-
-
 
 
 app.mainloop()
